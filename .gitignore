@@ -1,0 +1,12 @@
+# Python - bytecode gerado automaticamente, não precisa versionar
+__pycache__/
+*.pyc
+*.pyo
+# Ambiente virtual - cada dev cria o seu
+venv/
+.venv/
+# Variáveis de ambiente - NUNCA commitar (contém senhas)
+.env
+# Editores
+.vscode/
+.idea/
