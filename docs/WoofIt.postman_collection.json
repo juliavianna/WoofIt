@@ -1,0 +1,1151 @@
+{
+	"info": {
+		"_postman_id": "2729299d-f8d1-4641-8004-7477053ae4cf",
+		"name": "WoofIt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45062571"
+	},
+	"item": [
+		{
+			"name": "usuarios- Criar usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Carlos Walker\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"prestador\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/usuarios/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"usuarios",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Criação usuario Julia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Julia Vidal Vianna\",\r\n    \"email\": \"juliavidal@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"cliente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/usuarios/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:26:22 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"icuzg\",\n    \"mensagem\": \"Usuario criado com sucesso\"\n}"
+				}
+			]
+		},
+		{
+			"name": "usuarios  - Listar  usuários",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Carlos Walker\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"prestador\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/usuarios/ln2ou",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"usuarios",
+						"ln2ou"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Listagem de todos os usuarios",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Carlos Walker\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"prestador\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/usuarios/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:27:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "941"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"criado_em\": \"2026-05-10T23:10:23.207000\",\n        \"email\": \"julia@email.com\",\n        \"nome\": \"Julia Vidal\",\n        \"perfil\": \"cliente\"\n    },\n    {\n        \"criado_em\": \"2026-05-10T23:10:37.373000\",\n        \"email\": \"carlos@email.com\",\n        \"nome\": \"Carlos Walker\",\n        \"perfil\": \"prestador\"\n    },\n    {\n        \"criado_em\": \"2026-05-10T23:26:56.339000\",\n        \"email\": \"mariaa@email.com\",\n        \"id\": \"93drt\",\n        \"nome\": \"Maria Zinha\",\n        \"perfil\": \"prestador\"\n    },\n    {\n        \"criado_em\": \"2026-05-10T23:28:12.049000\",\n        \"email\": \"simone@email.com\",\n        \"id\": \"ln2ou\",\n        \"nome\": \"Simone Vidal\",\n        \"perfil\": \"cliente\"\n    },\n    {\n        \"criado_em\": \"2026-05-10T23:51:52.506000\",\n        \"email\": \"guigui@email.com\",\n        \"id\": \"j8u6a\",\n        \"nome\": \"Guilherme Jardim\",\n        \"perfil\": \"cliente\"\n    },\n    {\n        \"criado_em\": \"2026-05-11T16:26:22.004000\",\n        \"email\": \"juliavidal@email.com\",\n        \"id\": \"icuzg\",\n        \"nome\": \"Julia Vidal Vianna\",\n        \"perfil\": \"cliente\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "usuarios  - Busca usuário por Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Carlos Walker\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"prestador\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/usuarios/ln2ou",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"usuarios",
+						"ln2ou"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Usuario julia cadastrado no post usuarios",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Carlos Walker\",\r\n    \"email\": \"carlos@email.com\",\r\n    \"senha\": \"123456\",\r\n    \"perfil\": \"prestador\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/usuarios/icuzg",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"usuarios",
+								"icuzg"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:27:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"criado_em\": \"2026-05-11T16:26:22.004000\",\n    \"email\": \"juliavidal@email.com\",\n    \"id\": \"icuzg\",\n    \"nome\": \"Julia Vidal Vianna\",\n    \"perfil\": \"cliente\"\n}"
+				}
+			]
+		},
+		{
+			"name": "pets - Cadastra pet",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"especie\": \"cachorro\",\r\n    \"raca\": \"Golden Retriever\",\r\n    \"idade\": 3,\r\n    \"cliente_id\": \"6a01105f2e6d12d2b718c89c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pets/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pets",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Criação do pet Mel da Julia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Mel\",\r\n    \"especie\": \"gato\",\r\n    \"raca\": \"siames\",\r\n    \"idade\": 4,\r\n    \"cliente_id\": \"icuzg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/pets/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pets",
+								""
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:31:49 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"camaf\",\n    \"mensagem\": \"Pet cadastrado com sucesso\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Lista Pets",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "Listagem de todos os pets cadastrados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/pets/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pets",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:32:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "752"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"cliente_id\": \"icuzg\",\n        \"criado_em\": \"2026-05-11T16:31:13.261000\",\n        \"especie\": \"gato\",\n        \"id\": \"uqvf4\",\n        \"idade\": 4,\n        \"nome\": \"Mel\",\n        \"raca\": \"siames\"\n    },\n    {\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T16:31:19.353000\",\n        \"especie\": \"Cachorro\",\n        \"id\": \"lssq0\",\n        \"idade\": 10,\n        \"nome\": \"Lessie\",\n        \"raca\": \"pastor alemão\"\n    },\n    {\n        \"cliente_id\": \"ln2ou\",\n        \"criado_em\": \"2026-05-11T16:31:25.719000\",\n        \"especie\": \"gato\",\n        \"id\": \"dtuql\",\n        \"idade\": 3,\n        \"nome\": \"Lg\",\n        \"raca\": \"vira-lata\"\n    },\n    {\n        \"cliente_id\": \"icuzg\",\n        \"criado_em\": \"2026-05-11T16:31:49.793000\",\n        \"especie\": \"gato\",\n        \"id\": \"camaf\",\n        \"idade\": 5,\n        \"nome\": \"Lua\",\n        \"raca\": \"vira-lata\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "pets - Lista pets por cliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"especie\": \"cachorro\",\r\n    \"raca\": \"Golden Retriever\",\r\n    \"idade\": 3,\r\n    \"cliente_id\": \"6a01105f2e6d12d2b718c89c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pets?cliente_id=ln2ou",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pets"
+					],
+					"query": [
+						{
+							"key": "cliente_id",
+							"value": "ln2ou"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "pets do usuario Julia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"especie\": \"cachorro\",\r\n    \"raca\": \"Golden Retriever\",\r\n    \"idade\": 3,\r\n    \"cliente_id\": \"6a01105f2e6d12d2b718c89c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/pets?cliente_id=icuzg",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pets"
+							],
+							"query": [
+								{
+									"key": "cliente_id",
+									"value": "icuzg"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:37:36 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "452"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"cliente_id\": \"icuzg\",\n        \"criado_em\": \"2026-05-11T16:31:13.261000\",\n        \"especie\": \"gato\",\n        \"id\": \"uqvf4\",\n        \"idade\": 4,\n        \"nome\": \"Mel\",\n        \"nome_cliente\": \"Julia Vidal Vianna\",\n        \"raca\": \"siames\"\n    },\n    {\n        \"cliente_id\": \"icuzg\",\n        \"criado_em\": \"2026-05-11T16:31:49.793000\",\n        \"especie\": \"gato\",\n        \"id\": \"camaf\",\n        \"idade\": 5,\n        \"nome\": \"Lua\",\n        \"nome_cliente\": \"Julia Vidal Vianna\",\n        \"raca\": \"vira-lata\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "pets - Busca pet por ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"especie\": \"cachorro\",\r\n    \"raca\": \"Golden Retriever\",\r\n    \"idade\": 3,\r\n    \"cliente_id\": \"6a01105f2e6d12d2b718c89c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/pets/5y5mm",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pets",
+						"5y5mm"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "busca pet Mel pelo id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Bob\",\r\n    \"especie\": \"cachorro\",\r\n    \"raca\": \"Golden Retriever\",\r\n    \"idade\": 3,\r\n    \"cliente_id\": \"6a01105f2e6d12d2b718c89c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/pets/camaf",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pets",
+								"camaf"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:38:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "205"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"cliente_id\": \"icuzg\",\n    \"criado_em\": \"2026-05-11T16:31:49.793000\",\n    \"especie\": \"gato\",\n    \"id\": \"camaf\",\n    \"idade\": 5,\n    \"nome\": \"Lua\",\n    \"nome_cliente\": \"Julia Vidal Vianna\",\n    \"raca\": \"vira-lata\"\n}"
+				}
+			]
+		},
+		{
+			"name": "servico - Cria solicitação de serviço",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passear na rua por 40 minutos\",\r\n    \"data\": \"12-05-26\",\r\n    \"hora\": \"15:00\",\r\n    \"cliente_id\": \"j8u6a\",\r\n    \"pet_id\": \"t0yiz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/servicos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"servicos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "solicitação de servico pro pet Mel",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"visita\",\r\n    \"descricao\": \"Visitar a Mel por 5 horas, trocar ração e limpar caixa de areia\",\r\n    \"data\": \"27-05-26\",\r\n    \"hora\": \"15:00\",\r\n    \"cliente_id\": \"icuzg\",\r\n    \"pet_id\": \"camaf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/servicos/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"servicos",
+								""
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:40:10 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"h8kfm\",\n    \"mensagem\": \"Solicitacao criada com sucesso\"\n}"
+				}
+			]
+		},
+		{
+			"name": "servico - Lista todos os serviços",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/servicos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"servicos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "lista de todos as solicitações de servico",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/servicos/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"servicos",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:40:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1417"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"atualizado_em\": \"2026-05-11T16:40:10.538000\",\n        \"cliente_id\": \"icuzg\",\n        \"criado_em\": \"2026-05-11T16:40:10.538000\",\n        \"data\": \"27-05-26\",\n        \"descricao\": \"Visitar a Mel por 5 horas, trocar ração e limpar caixa de areia\",\n        \"hora\": \"15:00\",\n        \"id\": \"h8kfm\",\n        \"pet_id\": \"camaf\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"visita\"\n    },\n    {\n        \"atualizado_em\": \"2026-05-11T15:35:58.951000\",\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T15:35:58.951000\",\n        \"data\": \"12-05-26\",\n        \"descricao\": \"Passear na rua por 40 minutos\",\n        \"hora\": \"15:00\",\n        \"id\": \"lv09o\",\n        \"pet_id\": \"t0yiz\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"passeio\"\n    },\n    {\n        \"atualizado_em\": \"2026-05-11T15:29:34.895000\",\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T15:29:34.895000\",\n        \"data_hora\": \"2026-05-12T13:00:00\",\n        \"descricao\": \"Ficar com o gato por 3 dias\",\n        \"id\": \"cri1o\",\n        \"pet_id\": \"6vgsl\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"hospedagem\"\n    },\n    {\n        \"atualizado_em\": \"2026-05-11T15:29:10.912000\",\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T15:29:10.912000\",\n        \"data_hora\": \"2026-05-12T13:00:00\",\n        \"descricao\": \"Passear na rua por 40 minutos\",\n        \"id\": \"47kwo\",\n        \"pet_id\": \"t0yiz\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"passeio\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "servico - Lista serviços por status e tipo",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/servicos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"servicos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "status pendente e tipo passeio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/servicos/?status=pendente&tipo=passeio",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"servicos",
+								""
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "pendente"
+								},
+								{
+									"key": "tipo",
+									"value": "passeio"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:40:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "688"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"atualizado_em\": \"2026-05-11T15:35:58.951000\",\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T15:35:58.951000\",\n        \"data\": \"12-05-26\",\n        \"descricao\": \"Passear na rua por 40 minutos\",\n        \"hora\": \"15:00\",\n        \"id\": \"lv09o\",\n        \"pet_id\": \"t0yiz\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"passeio\"\n    },\n    {\n        \"atualizado_em\": \"2026-05-11T15:29:10.912000\",\n        \"cliente_id\": \"j8u6a\",\n        \"criado_em\": \"2026-05-11T15:29:10.912000\",\n        \"data_hora\": \"2026-05-12T13:00:00\",\n        \"descricao\": \"Passear na rua por 40 minutos\",\n        \"id\": \"47kwo\",\n        \"pet_id\": \"t0yiz\",\n        \"prestador_id\": null,\n        \"status\": \"pendente\",\n        \"tipo\": \"passeio\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "servico - Busca serviço por ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/servicos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"servicos",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "lista por id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipo\": \"passeio\",\r\n    \"descricao\": \"Passeio de 30 minutos no parque\",\r\n    \"data_hora\": \"2026-05-15T15:00:00\",\r\n    \"cliente_id\": \"COLE_O_ID_DO_CLIENTE_AQUI\",\r\n    \"pet_id\": \"COLE_O_ID_DO_PET_AQUI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/servicos/lv09o",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"servicos",
+								"lv09o"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:41:21 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "318"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"atualizado_em\": \"2026-05-11T15:35:58.951000\",\n    \"cliente_id\": \"j8u6a\",\n    \"criado_em\": \"2026-05-11T15:35:58.951000\",\n    \"data\": \"12-05-26\",\n    \"descricao\": \"Passear na rua por 40 minutos\",\n    \"hora\": \"15:00\",\n    \"id\": \"lv09o\",\n    \"pet_id\": \"t0yiz\",\n    \"prestador_id\": null,\n    \"status\": \"pendente\",\n    \"tipo\": \"passeio\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Atualiza status",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/servicos/y23c1/aceito",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"servicos",
+						"y23c1",
+						"aceito"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "atualização do status do servico lv09o para aceito",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"aceito\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/servicos/lv09o/status",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"servicos",
+								"lv09o",
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/3.1.8 Python/3.13.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 May 2026 16:41:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"mensagem\": \"Status atualizado com sucesso\"\n}"
+				}
+			]
+		}
+	]
+}

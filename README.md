@@ -1,4 +1,13 @@
 # WoofIt 
+WoofIt é uma plataforma de intermediação de serviços para pets que conecta
+**tutores de animais** a **pet sitters e dog walkers** de forma ágil e confiável.
+
+Por meio do aplicativo, o tutor cadastra seu pet, solicita um serviço (passeio,
+visita ou hospedagem) e acompanha o status em tempo real. O prestador recebe as
+demandas disponíveis, aceita ou recusa, e atualiza o andamento do serviço.
+
+> Projeto da disciplina **Laboratório de Desenvolvimento de Aplicações Móveis e
+> Distribuídas** — Engenharia de Software, PUC Minas 
 
 ## Backend REST
 
