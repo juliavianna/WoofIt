@@ -22,12 +22,19 @@ def criar():
     if not data:
         return jsonify({'erro': 'Body JSON obrigatorio'}), 400
 
-    for campo in ['tipo', 'data_hora', 'cliente_id', 'pet_id']:
+    for campo in ['tipo', 'data', 'hora', 'cliente_id', 'pet_id']:
         if campo not in data:
             return jsonify({'erro': f'Campo obrigatorio ausente: {campo}'}), 400
 
     if data['tipo'] not in TIPOS_VALIDOS:
         return jsonify({'erro': f'tipo deve ser: {", ".join(TIPOS_VALIDOS)}'}), 400
+
+    import re
+    if not re.match(r'^\d{2}-\d{2}-\d{2}$', data['data']):
+        return jsonify({'erro': 'data deve estar no formato dd-mm-aa (ex: 15-05-26)'}), 400
+
+    if not re.match(r'^\d{2}:\d{2}$', data['hora']):
+        return jsonify({'erro': 'hora deve estar no formato hh:mm (ex: 14:30)'}), 400
 
     if not db.usuarios.find_one({'id': data['cliente_id'], 'perfil': 'cliente'}):
         return jsonify({'erro': 'Cliente nao encontrado'}), 404
@@ -35,11 +42,17 @@ def criar():
     if not db.pets.find_one({'id': data['pet_id']}):
         return jsonify({'erro': 'Pet nao encontrado'}), 404
 
-    servico = criar_servico(data['tipo'], data.get('descricao', ''), data['data_hora'], data['cliente_id'], data['pet_id'])
+    servico = criar_servico(
+        data['tipo'],
+        data.get('descricao', ''),
+        data['data'],
+        data['hora'],
+        data['cliente_id'],
+        data['pet_id']
+    )
     db.servicos.insert_one(servico)
 
     return jsonify({'mensagem': 'Solicitacao criada com sucesso', 'id': servico['id']}), 201
-
 
 @servicos_bp.route('/', methods=['GET'])
 def listar():
