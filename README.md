@@ -15,19 +15,8 @@ Projeto da disciplina LAMD — PUC Minas, Sprint 1.
 | Banco de dados | MongoDB 8.x | NoSQL orientado a documentos; schema flexível para diferentes tipos de serviço |
 | Driver | pymongo | Driver oficial MongoDB para Python |
 
-## Estrutura (Clean Architecture)
-woofit/
-├── app/
-│ ├── init.py # Application Factory — cria o app Flask
-│ ├── config.py # Configurações centralizadas (lê o .env)
-│ ├── database.py # Infraestrutura: conexão com o MongoDB
-│ ├── models/ # Entidades do domínio (não conhecem Flask)
-│ └── routes/ # Adaptadores: recebem HTTP, devolvem JSON
-├── docs/ # Diagrama de arquitetura e schema
-├── .env.example # Modelo de variáveis de ambiente
-├── requirements.txt # Dependências
-├── run.py # Ponto de entrada
-└── README.md
+## Estrutura 
+![estrutura de arquivos e pastas]({14EE1D34-146A-4CBB-B781-188187154D23}.png)
 
 ## Perfis de Usuário
 - **cliente** — Dono do pet: cadastra animais e cria solicitações de serviço
