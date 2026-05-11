@@ -9,14 +9,14 @@ STATUS_VALIDOS = ['pendente', 'aceito', 'em_andamento', 'concluido', 'cancelado'
 TIPOS_VALIDOS = ['passeio', 'hospedagem', 'visita']
 
 
-def serializar(s):
+def serializar(s): #remove o _id do MongoDB e converte os ObjectId para string para facilitar a leitura no front
     s.pop('_id')
     s['criado_em'] = s['criado_em'].isoformat()
     s['atualizado_em'] = s['atualizado_em'].isoformat()
     return s
 
 
-@servicos_bp.route('/', methods=['POST'])
+@servicos_bp.route('/', methods=['POST']) #cadastra uma nova solicitação de serviço, é necessário informar o id do cliente e do pet para associar a solicitação ao tutor e ao pet
 def criar():
     data = request.get_json()
     if not data:
@@ -54,7 +54,7 @@ def criar():
 
     return jsonify({'mensagem': 'Solicitacao criada com sucesso', 'id': servico['id']}), 201
 
-@servicos_bp.route('/', methods=['GET'])
+@servicos_bp.route('/', methods=['GET']) #lista solicitações de serviço, pode filtrar por status e tipo
 def listar():
     filtro = {}
     if request.args.get('status'):
@@ -66,7 +66,7 @@ def listar():
     return jsonify([serializar(s) for s in servicos]), 200
 
 
-@servicos_bp.route('/<id>', methods=['GET'])
+@servicos_bp.route('/<id>', methods=['GET']) #busca solicitação de serviço por id
 def buscar(id):
     servico = db.servicos.find_one({'id': id})
     if not servico:
@@ -74,7 +74,7 @@ def buscar(id):
     return jsonify(serializar(servico)), 200
 
 
-@servicos_bp.route('/<id>/status', methods=['PATCH'])
+@servicos_bp.route('/<id>/status', methods=['PATCH']) #atualiza o status de uma solicitação de serviço, é possível aceitar a solicitação e associar um prestador ao serviço
 def atualizar_status(id):
     data = request.get_json()
     if not data or 'status' not in data:

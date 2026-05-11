@@ -1,17 +1,27 @@
 from flask import Blueprint, request, jsonify
+from bson import ObjectId
 from ..database import db
 from ..models.pet import criar_pet
 
 pets_bp = Blueprint('pets', __name__)
 
 
-def serializar(p):
-    p.pop('_id')
+def serializar(p): #remove o _id do MongoDB e converte os ObjectId para string para facilitar a leitura no front
+    p.pop('_id', None)
+    for chave in list(p.keys()):
+        if isinstance(p[chave], ObjectId):
+            p[chave] = str(p[chave])
     p['criado_em'] = p['criado_em'].isoformat()
     return p
 
 
-@pets_bp.route('/', methods=['POST'])
+def nomeTutor(p): #pega o nome do tutor do pet para exibir junto com os dados do pet
+    cliente = db.usuarios.find_one({'id': p['cliente_id']}, {'nome': 1})
+    p['nome_cliente'] = cliente['nome'] if cliente else 'Desconhecido'
+    return p
+
+
+@pets_bp.route('/', methods=['POST']) #cadastra um novo pet, é necessário informar o id do cliente para associar o pet ao tutor
 def criar():
     data = request.get_json()
     if not data:
@@ -31,19 +41,19 @@ def criar():
     return jsonify({'mensagem': 'Pet cadastrado com sucesso', 'id': pet['id']}), 201
 
 
-@pets_bp.route('/', methods=['GET'])
+@pets_bp.route('/', methods=['GET']) #lista pets, pode filtrar por cliente_id para mostrar apenas os pets de um cliente específico
 def listar():
     filtro = {}
     if request.args.get('cliente_id'):
         filtro['cliente_id'] = request.args.get('cliente_id')
 
     pets = list(db.pets.find(filtro))
-    return jsonify([serializar(p) for p in pets]), 200
+    return jsonify([serializar(nomeTutor(p)) for p in pets]), 200
 
 
-@pets_bp.route('/<id>', methods=['GET'])
+@pets_bp.route('/<id>', methods=['GET']) #busca pet por id e exibe junto o nome do tutor
 def buscar(id):
     pet = db.pets.find_one({'id': id})
     if not pet:
         return jsonify({'erro': 'Pet nao encontrado'}), 404
-    return jsonify(serializar(pet)), 200
+    return jsonify(serializar(nomeTutor(pet))), 200

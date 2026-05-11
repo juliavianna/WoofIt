@@ -5,13 +5,13 @@ from ..models.usuario import criar_usuario
 usuarios_bp = Blueprint('usuarios', __name__)
 
 
-def serializar(u):
+def serializar(u): #remove o _id do MongoDB e converte os ObjectId para string para facilitar a leitura no front
     u.pop('_id')
     u['criado_em'] = u['criado_em'].isoformat()
     return u
 
 
-@usuarios_bp.route('/', methods=['POST'])
+@usuarios_bp.route('/', methods=['POST']) #cadastra um novo usuário, é necessário informar nome, email, senha e perfil (cliente ou prestador)
 def criar():
     data = request.get_json()
     if not data:
@@ -33,13 +33,13 @@ def criar():
     return jsonify({'mensagem': 'Usuario criado com sucesso', 'id': usuario['id']}), 201
 
 
-@usuarios_bp.route('/', methods=['GET'])
+@usuarios_bp.route('/', methods=['GET']) #lista usuários, pode filtrar por perfil para mostrar apenas clientes ou prestadores
 def listar():
     usuarios = list(db.usuarios.find({}, {'senha': 0}))
     return jsonify([serializar(u) for u in usuarios]), 200
 
 
-@usuarios_bp.route('/<id>', methods=['GET'])
+@usuarios_bp.route('/<id>', methods=['GET']) #busca usuário por id (não retorna a senha)
 def buscar(id):
     usuario = db.usuarios.find_one({'id': id}, {'senha': 0})
     if not usuario:
