@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..database import db
 from ..models.usuario import criar_usuario
+from ..messaging.publisher import publicar_evento
 
 usuarios_bp = Blueprint('usuarios', __name__)
 
