@@ -1,12 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-def create_app():
-    """
-    Application Factory Pattern: em vez de criar o app Flask no nível do módulo,
-    criamos dentro de uma função. Isso permite criar instâncias diferentes
-    para testes e para produção, evitando efeitos colaterais na importação.
-    """
+def create_app(): #função de fábrica para criar a aplicação Flask, configurar o CORS e registrar os blueprints das rotas
     app = Flask(__name__)
     
     CORS(app)
@@ -17,6 +12,6 @@ def create_app():
     
     app.register_blueprint(usuarios_bp, url_prefix='/usuarios')
     app.register_blueprint(pets_bp, url_prefix='/pets')
-    app.register_blueprint(servicos_bp, url_prefix='/servicos')
+    app.register_blueprint(servicos_bp, url_prefix='/servicos') #Blueprints são "mini-aplicações" Flask que agrupam rotas relacionadas
     
     return app

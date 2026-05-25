@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from datetime import datetime
 from ..database import db
 from ..models.servico import criar_servico
+from ..messaging.publisher import publicar_evento
 
 servicos_bp = Blueprint('servicos', __name__)
 
@@ -52,6 +53,14 @@ def criar():
     )
     db.servicos.insert_one(servico)
 
+    publicar_evento('solicitacao_criada', {
+        'servico_id': servico['id'],
+        'tipo': servico['tipo'],
+        'cliente_id': servico['cliente_id'],
+        'pet_id': servico['pet_id'],
+        'status': servico['status']
+    })
+
     return jsonify({'mensagem': 'Solicitacao criada com sucesso', 'id': servico['id']}), 201
 
 @servicos_bp.route('/', methods=['GET']) #lista solicitações de serviço, pode filtrar por status e tipo
@@ -91,5 +100,10 @@ def atualizar_status(id):
     resultado = db.servicos.update_one({'id': id}, atualizacao)
     if resultado.matched_count == 0:
         return jsonify({'erro': 'Servico nao encontrado'}), 404
+
+    publicar_evento('status_atualizado', {
+        'servico_id': id,
+        'novo_status': data['status']
+    })
 
     return jsonify({'mensagem': 'Status atualizado com sucesso'}), 200
