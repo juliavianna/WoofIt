@@ -25,7 +25,7 @@ Projeto da disciplina LAMD — PUC Minas, Sprint 1.
 | Driver | pymongo | Driver oficial MongoDB para Python |
 
 ## Estrutura 
-![estrutura de arquivos e pastas]({14EE1D34-146A-4CBB-B781-188187154D23}.png)
+![estrutura de arquivos e pastas]({2C0D26DE-F15E-4ADD-9986-66C2C02EF46F}.png)
 
 ## Perfis de Usuário
 - **cliente** — Dono do pet: cadastra animais e cria solicitações de serviço
