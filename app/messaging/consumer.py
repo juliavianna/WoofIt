@@ -3,7 +3,7 @@ import json
 
 RABBITMQ_URL = 'amqp://guest:guest@localhost:5672/'
 
-FILAS = ['solicitacao_criada', 'status_atualizado']
+FILAS = ['solicitacao_criada', 'status_atualizado', 'usuario_cadastrado', 'pet_cadastrado']
 
 def processar_mensagem(canal, method, properties, body):
     """

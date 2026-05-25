@@ -21,6 +21,8 @@ O produtor é chamado pelas rotas de serviços sempre que uma operação relevan
 
 | Rota que produz | Evento gerado |
 |-----------------|---------------|
+| POST /usuarios | `usuario_cadastrado` |
+| POST /pets | `pet_cadastrado` |
 | POST /servicos | `solicitacao_criada` |
 | PATCH /servicos/:id/status | `status_atualizado` |
 
@@ -33,6 +35,8 @@ O consumidor fica "de plantão" esperando mensagens chegarem. Quando uma mensage
 
 | Fila escutada | Callback |
 |---------------|----------|
+| `usuario_cadastrado` | `processar_mensagem` |
+| `pet_cadastrado` | `processar_mensagem` |
 | `solicitacao_criada` | `processar_mensagem` |
 | `status_atualizado` | `processar_mensagem` |
 
@@ -40,23 +44,80 @@ O consumidor fica "de plantão" esperando mensagens chegarem. Quando uma mensage
 
 ## Eventos
 
-### `solicitacao_criada`
+### `usuario_cadastrado`
 
-Publicado quando um cliente cria uma nova solicitação de serviço (POST /servicos).
+| Atributo | Valor |
+|----------|-------|
+| **Nome** | `usuario_cadastrado` |
+| **Fila/Tópico** | `usuario_cadastrado` |
+| **Produtor** | `app/routes/usuarios.py` — rota POST /usuarios |
+| **Consumidor** | `app/messaging/consumer.py` |
 
-**Fila:** `solicitacao_criada`  
-**Durabilidade:** persistente (`durable=True`, `delivery_mode=2`)
+**Descrição:** disparado quando um novo usuário se cadastra na plataforma, seja ele um tutor ou um prestador de serviço.
+
+**Payload JSON de exemplo:**
+```json
+{
+  "usuario_id": "ab3kx",
+  "nome": "Maria Silva",
+  "perfil": "cliente",
+  "timestamp": "2026-05-25T10:12:00.000000"
+}
+```
 
 | Campo | Tipo | Descrição |
 |-------|------|-----------|
-| `servico_id` | string | ID da solicitação criada |
-| `tipo` | string | Tipo do serviço (`passeio`, `visita`, `hospedagem`) |
-| `cliente_id` | string | ID do tutor que solicitou |
-| `pet_id` | string | ID do pet envolvido |
-| `status` | string | Sempre `pendente` na criação |
-| `timestamp` | string | ISO 8601 — momento da publicação |
+| `usuario_id` | string | ID do usuário cadastrado |
+| `nome` | string | Nome do usuário |
+| `perfil` | string | Tipo de conta (`cliente` ou `prestador`) |
+| `timestamp` | string | Momento da publicação no formato ISO 8601 |
 
-**Exemplo de payload:**
+---
+
+### `pet_cadastrado`
+
+| Atributo | Valor |
+|----------|-------|
+| **Nome** | `pet_cadastrado` |
+| **Fila/Tópico** | `pet_cadastrado` |
+| **Produtor** | `app/routes/pets.py` — rota POST /pets |
+| **Consumidor** | `app/messaging/consumer.py` |
+
+**Descrição:** disparado quando um tutor cadastra um novo pet na plataforma.
+
+**Payload JSON de exemplo:**
+```json
+{
+  "pet_id": "xz9qw",
+  "nome": "Bolt",
+  "especie": "cachorro",
+  "cliente_id": "ab3kx",
+  "timestamp": "2026-05-25T10:15:00.000000"
+}
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `pet_id` | string | ID do pet cadastrado |
+| `nome` | string | Nome do pet |
+| `especie` | string | Espécie do animal |
+| `cliente_id` | string | ID do tutor dono do pet |
+| `timestamp` | string | Momento da publicação no formato ISO 8601 |
+
+---
+
+### `solicitacao_criada`
+
+| Atributo | Valor |
+|----------|-------|
+| **Nome** | `solicitacao_criada` |
+| **Fila/Tópico** | `solicitacao_criada` |
+| **Produtor** | `app/routes/servicos.py` — rota POST /servicos |
+| **Consumidor** | `app/messaging/consumer.py` |
+
+**Descrição:** disparado quando um cliente cria uma nova solicitação de serviço. Permite que outros sistemas saibam que há um novo serviço aguardando um prestador.
+
+**Payload JSON de exemplo:**
 ```json
 {
   "servico_id": "9jnuu",
@@ -68,22 +129,29 @@ Publicado quando um cliente cria uma nova solicitação de serviço (POST /servi
 }
 ```
 
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `servico_id` | string | ID da solicitação criada |
+| `tipo` | string | Tipo do serviço (`passeio`, `visita`, `hospedagem`) |
+| `cliente_id` | string | ID do tutor que solicitou |
+| `pet_id` | string | ID do pet envolvido |
+| `status` | string | Sempre `pendente` na criação |
+| `timestamp` | string | Momento da publicação no formato ISO 8601 |
+
 ---
 
 ### `status_atualizado`
 
-Publicado quando o status de uma solicitação é alterado (PATCH /servicos/:id/status).
+| Atributo | Valor |
+|----------|-------|
+| **Nome** | `status_atualizado` |
+| **Fila/Tópico** | `status_atualizado` |
+| **Produtor** | `app/routes/servicos.py` — rota PATCH /servicos/:id/status |
+| **Consumidor** | `app/messaging/consumer.py` |
 
-**Fila:** `status_atualizado`  
-**Durabilidade:** persistente (`durable=True`, `delivery_mode=2`)
+**Descrição:** disparado quando o status de uma solicitação é alterado. Permite rastrear em tempo real a evolução de um serviço, desde a aceitação até a conclusão.
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| `servico_id` | string | ID da solicitação atualizada |
-| `novo_status` | string | Novo status (`aceito`, `em_andamento`, `concluido`, `cancelado`) |
-| `timestamp` | string | ISO 8601 — momento da publicação |
-
-**Exemplo de payload:**
+**Payload JSON de exemplo:**
 ```json
 {
   "servico_id": "9jnuu",
@@ -92,39 +160,44 @@ Publicado quando o status de uma solicitação é alterado (PATCH /servicos/:id/
 }
 ```
 
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `servico_id` | string | ID da solicitação atualizada |
+| `novo_status` | string | Novo status (`aceito`, `em_andamento`, `concluido`, `cancelado`) |
+| `timestamp` | string | Momento da publicação no formato ISO 8601 |
+
 ---
 
 ## Fluxo de eventos
 
 ```
-Cliente faz POST /servicos
-        │
-        ▼
-  [Flask cria serviço no MongoDB]
-        │
-        ▼
-  publicar_evento('solicitacao_criada', {...})
-        │
-        ▼
-  [RabbitMQ — fila: solicitacao_criada]
-        │
-        ▼
-  [Consumer imprime evento recebido]
-
-
-Cliente faz PATCH /servicos/:id/status
-        │
-        ▼
-  [Flask atualiza status no MongoDB]
-        │
-        ▼
-  publicar_evento('status_atualizado', {...})
-        │
-        ▼
-  [RabbitMQ — fila: status_atualizado]
-        │
-        ▼
-  [Consumer imprime evento recebido]
+POST /usuarios ──► salva no MongoDB ──► publicar_evento('usuario_cadastrado')
+                                                │
+POST /pets     ──► salva no MongoDB ──► publicar_evento('pet_cadastrado')
+                                                │
+POST /servicos ──► salva no MongoDB ──► publicar_evento('solicitacao_criada')
+                                                │
+PATCH /servicos/:id/status                      │
+               ──► atualiza MongoDB ──► publicar_evento('status_atualizado')
+                                                │
+                                                ▼
+                                    ┌───────────────────────┐
+                                    │       RabbitMQ        │
+                                    │  fila: usuario_       │
+                                    │        cadastrado     │
+                                    │  fila: pet_cadastrado │
+                                    │  fila: solicitacao_   │
+                                    │        criada         │
+                                    │  fila: status_        │
+                                    │        atualizado     │
+                                    └───────────┬───────────┘
+                                                │
+                                                ▼
+                                    ┌───────────────────────┐
+                                    │  consumer.py          │
+                                    │  processa e exibe     │
+                                    │  todos os eventos     │
+                                    └───────────────────────┘
 ```
 
 ---

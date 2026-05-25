@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
 from bson import ObjectId
+
+from app.messaging.publisher import publicar_evento
 from ..database import db
 from ..models.pet import criar_pet
 
@@ -37,6 +39,13 @@ def criar():
 
     pet = criar_pet(data['nome'], data['especie'], data.get('raca', ''), data['idade'], data['cliente_id'])
     db.pets.insert_one(pet)
+
+    publicar_evento('pet_cadastrado', {
+        'pet_id': pet['id'],
+        'nome': pet['nome'],
+        'especie': pet['especie'],
+        'cliente_id': pet['cliente_id']
+    })
 
     return jsonify({'mensagem': 'Pet cadastrado com sucesso', 'id': pet['id']}), 201
 

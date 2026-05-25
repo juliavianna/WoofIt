@@ -53,11 +53,22 @@ Qualquer estado pode ir para `cancelado`
 ```bash
 # 1. Criar ambiente virtual (isola as bibliotecas deste projeto)
 python -m venv venv
+
 # 2. Ativar (Windows PowerShell)
 .\venv\Scripts\Activate.ps1
+
 # 3. Instalar dependências
 pip install -r requirements.txt
+
 # 4. Copiar e preencher variáveis de ambiente
 copy .env.example .env
-# 5. Iniciar servidor
+
+# 5. Garantir que o RabbitMQ está rodando
+# Abra o PowerShell como Administrador e rode:
+sc.exe start RabbitMQ
+
+# 6. Iniciar o servidor Flask (Terminal 1)
 python run.py
+
+# 7. Iniciar o consumer de eventos (Terminal 2)
+python -m app.messaging.consumer

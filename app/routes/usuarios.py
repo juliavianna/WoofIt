@@ -30,6 +30,12 @@ def criar():
     usuario = criar_usuario(data['nome'], data['email'], data['senha'], data['perfil'])
     db.usuarios.insert_one(usuario)
 
+    publicar_evento('usuario_cadastrado', {
+        'usuario_id': usuario['id'],
+        'nome': usuario['nome'],
+        'perfil': usuario['perfil']
+    })
+
     return jsonify({'mensagem': 'Usuario criado com sucesso', 'id': usuario['id']}), 201
 
 

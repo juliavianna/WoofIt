@@ -23,45 +23,8 @@ Integrar um middleware orientado a mensagens (MOM) ao backend REST desenvolvido 
 ---
 
 ## Arquitetura implementada
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                      Flask REST API                          │
-│                                                              │
-│  app/__init__.py ──► registra blueprints das rotas           │
-│                                                              │
-│  app/routes/servicos.py                                      │
-│    POST /servicos                                            │
-│      ├─► app/models/servico.py  (monta o documento)          │
-│      ├─► app/database.py        (salva no MongoDB)           │
-│      └─► app/messaging/publisher.py  (publica evento)        │
-│                                                              │
-│    PATCH /servicos/:id/status                                │
-│      ├─► app/database.py        (atualiza no MongoDB)        │
-│      └─► app/messaging/publisher.py  (publica evento)        │
-│                                                              │
-│  app/routes/usuarios.py  ──► app/models/usuario.py           │
-│  app/routes/pets.py      ──► app/models/pet.py               │
-└─────────────────────────────────┬────────────────────────────┘
-                                  │ AMQP (pika)
-                                  ▼
-                 ┌────────────────────────────┐
-                 │          RabbitMQ          │
-                 │                            │
-                 │  fila: solicitacao_criada  │
-                 │  fila: status_atualizado   │
-                 └──────────────┬─────────────┘
-                                │
-                                ▼
-                 ┌────────────────────────────┐
-                 │  app/messaging/consumer.py │
-                 │  (processo separado)        │
-                 │  escuta filas e imprime     │
-                 │  eventos recebidos          │
-                 └────────────────────────────┘
-```
-
 ---
+![Diagrama de Arquitetura](DiagramadeArq2.png)
 
 ## Componentes desenvolvidos
 
@@ -97,6 +60,8 @@ Dois pontos de publicação foram adicionados às rotas existentes:
 
 | Evento | Fila | Gatilho |
 |--------|------|---------|
+| `usuario_cadastrado` | `usuario_cadastrado` | POST /usuarios com sucesso |
+| `pet_cadastrado` | `pet_cadastrado` | POST /pets com sucesso |
 | `solicitacao_criada` | `solicitacao_criada` | POST /servicos com sucesso |
 | `status_atualizado` | `status_atualizado` | PATCH /servicos/:id/status com sucesso |
 
