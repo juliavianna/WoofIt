@@ -10,3 +10,15 @@ venv/
 # Editores
 .vscode/
 .idea/
+
+# Flutter - arquivos gerados automaticamente
+woofit_cliente/.dart_tool/
+woofit_cliente/.flutter-plugins
+woofit_cliente/.flutter-plugins-dependencies
+woofit_cliente/.packages
+woofit_cliente/build/
+woofit_cliente/android/.gradle/
+woofit_cliente/android/local.properties
+woofit_cliente/android/key.properties
+woofit_cliente/*.iml
+woofit_cliente/pubspec.lock
