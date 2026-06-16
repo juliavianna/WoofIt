@@ -18,6 +18,20 @@ class ApiService {
     }
   }
 
+  Future<Map<String, dynamic>?> login(String email, String senha) async {
+  try {
+    final res = await http.post(
+      Uri.parse('$_base/usuarios/login'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'email': email, 'senha': senha}),
+    );
+    if (res.statusCode == 200) return jsonDecode(res.body);
+    return null;
+  } catch (_) {
+    return null;
+  }
+}
+
   Future<List<Pet>> listarPets(String clienteId) async {
     final res = await http.get(Uri.parse('$_base/pets/?cliente_id=$clienteId'));
     if (res.statusCode != 200) return [];

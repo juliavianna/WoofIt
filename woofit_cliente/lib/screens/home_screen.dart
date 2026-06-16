@@ -5,6 +5,7 @@ import '../services/api_service.dart';
 import '../widgets/servico_card.dart';
 import 'criar_servico_screen.dart';
 import 'detalhe_servico_screen.dart';
+import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String clienteId;
@@ -50,6 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: Colors.white,
         actions: [
           IconButton(icon: const Icon(Icons.refresh), onPressed: _carregar),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sair',
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()),
+                (route) => false,
+              );
+            },
+          ),
         ],
       ),
       body: _carregando

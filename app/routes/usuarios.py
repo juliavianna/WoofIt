@@ -52,3 +52,26 @@ def buscar(id):
     if not usuario:
         return jsonify({'erro': 'Usuario nao encontrado'}), 404
     return jsonify(serializar(usuario)), 200
+
+@usuarios_bp.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    if not data:
+        return jsonify({'erro': 'Body JSON obrigatorio'}), 400
+
+    for campo in ['email', 'senha']:
+        if campo not in data:
+            return jsonify({'erro': f'Campo obrigatorio ausente: {campo}'}), 400
+
+    usuario = db.usuarios.find_one({'email': data['email'], 'perfil': 'cliente'})
+    if not usuario:
+        return jsonify({'erro': 'Email nao encontrado'}), 404
+
+    if usuario['senha'] != data['senha']:
+        return jsonify({'erro': 'Senha incorreta'}), 401
+
+    return jsonify({
+        'id': usuario['id'],
+        'nome': usuario['nome'],
+        'perfil': usuario['perfil']
+    }), 200

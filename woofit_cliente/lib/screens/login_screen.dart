@@ -11,16 +11,28 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _emailCtrl = TextEditingController();
+  final _senhaCtrl = TextEditingController();
   bool _carregando = false;
+  bool _senhaVisivel = false;
   String? _erro;
 
   Future<void> _entrar() async {
+    if (_emailCtrl.text.trim().isEmpty || _senhaCtrl.text.trim().isEmpty) {
+      setState(() => _erro = 'Preencha e-mail e senha.');
+      return;
+    }
+
     setState(() { _carregando = true; _erro = null; });
-    final usuario = await ApiService().buscarUsuarioPorEmail(_emailCtrl.text.trim());
+
+    final usuario = await ApiService().login(
+      _emailCtrl.text.trim(),
+      _senhaCtrl.text.trim(),
+    );
+
     setState(() => _carregando = false);
 
-    if (usuario == null || usuario['perfil'] != 'cliente') {
-      setState(() => _erro = 'Cliente não encontrado. Verifique o e-mail.');
+    if (usuario == null) {
+      setState(() => _erro = 'E-mail ou senha incorretos.');
       return;
     }
 
@@ -46,8 +58,11 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             const Icon(Icons.pets, size: 80, color: Colors.deepOrange),
             const SizedBox(height: 16),
-            const Text('WoofIt', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-            const Text('Para tutores de pets', style: TextStyle(color: Colors.grey)),
+            const Text('WoofIt',
+                style: TextStyle(
+                    fontSize: 32, fontWeight: FontWeight.bold)),
+            const Text('Para tutores de pets',
+                style: TextStyle(color: Colors.grey)),
             const SizedBox(height: 48),
             TextField(
               controller: _emailCtrl,
@@ -58,8 +73,25 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               keyboardType: TextInputType.emailAddress,
             ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _senhaCtrl,
+              obscureText: !_senhaVisivel,
+              decoration: InputDecoration(
+                labelText: 'Senha',
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.lock),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _senhaVisivel ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () =>
+                      setState(() => _senhaVisivel = !_senhaVisivel),
+                ),
+              ),
+            ),
             if (_erro != null) ...[
-              const SizedBox(height: 8),
+              const SizedBox(height: 12),
               Text(_erro!, style: const TextStyle(color: Colors.red)),
             ],
             const SizedBox(height: 24),
